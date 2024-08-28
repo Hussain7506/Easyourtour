@@ -11,9 +11,9 @@ namespace Easyourtour.Models
         [Required]
         public string ImageUrl { get; set; }
 
-        public int ProductId { get; set; }
+        public int LocationId { get; set; }
 
-        [ForeignKey("ProductId")]
+        [ForeignKey("LocationId")]
         public Location Location { get; set; }
     }
 }

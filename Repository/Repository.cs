@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Linq;
+using Easyourtour.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Easyourtour.Repository
 {

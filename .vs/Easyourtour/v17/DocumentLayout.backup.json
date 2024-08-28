@@ -1,12 +1,105 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Hussain\\New folder\\Easyourtour\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|d:\\hussain\\new folder\\easyourtour\\controllers\\locationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|solutionrelative:controllers\\locationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|d:\\hussain\\new folder\\easyourtour\\wwwroot\\js\\locations.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|solutionrelative:wwwroot\\js\\locations.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|d:\\hussain\\new folder\\easyourtour\\views\\location\\upsert.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|solutionrelative:views\\location\\upsert.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|d:\\hussain\\new folder\\easyourtour\\views\\location\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|solutionrelative:views\\location\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|d:\\hussain\\new folder\\easyourtour\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Hussain\\New folder\\Easyourtour\\Views\\Location\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Location\\Index.cshtml",
+              "ToolTip": "D:\\Hussain\\New folder\\Easyourtour\\Views\\Location\\Index.cshtml",
+              "RelativeToolTip": "Views\\Location\\Index.cshtml",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAcwCYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-28T11:11:39.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Upsert.cshtml",
+              "DocumentMoniker": "D:\\Hussain\\New folder\\Easyourtour\\Views\\Location\\Upsert.cshtml",
+              "RelativeDocumentMoniker": "Views\\Location\\Upsert.cshtml",
+              "ToolTip": "D:\\Hussain\\New folder\\Easyourtour\\Views\\Location\\Upsert.cshtml",
+              "RelativeToolTip": "Views\\Location\\Upsert.cshtml",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAcwFgAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-28T11:11:31.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LocationController.cs",
+              "DocumentMoniker": "D:\\Hussain\\New folder\\Easyourtour\\Controllers\\LocationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LocationController.cs",
+              "ToolTip": "D:\\Hussain\\New folder\\Easyourtour\\Controllers\\LocationController.cs",
+              "RelativeToolTip": "Controllers\\LocationController.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAowC0AAABlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-28T10:27:23.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Locations.js",
+              "DocumentMoniker": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\js\\Locations.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\Locations.js",
+              "ToolTip": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\js\\Locations.js",
+              "RelativeToolTip": "wwwroot\\js\\Locations.js",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAwwBkAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-08-28T09:27:54.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Hussain\\New folder\\Easyourtour\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Hussain\\New folder\\Easyourtour\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAACgAAAAAAAAAAAAcwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-28T09:20:33.624Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
