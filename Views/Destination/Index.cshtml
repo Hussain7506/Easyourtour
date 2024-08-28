@@ -1,0 +1,57 @@
+﻿@model List<Destination>
+
+
+<div class="Container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary"> Destination List </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-asp-controller="DestinationController" asp-action="Create" class="btn btn-primary">
+                Create New Destination
+            </a>
+        </div>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                Destination Code
+            </th>
+            <th>
+                Destination Name
+            </th>
+            <th>
+                Destination Type
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    @obj.Id
+                </td>
+                <td>
+                    @obj.Name
+                </td>
+                <td>
+                    @obj.Destination_Type
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Destination" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                            Edit
+                        </a>
+                        <a asp-controller="Destination" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+                            Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+
+
+
+    </table>
+</div>
