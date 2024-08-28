@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "u2tmLk7fzESCx8534smGpqhmeJy6Vw6GTDFl31b4D2Q=",
+  "Hash": "f1Oj+aCut0Z9dbBp6DoK3tZDrn3YzSEx/m5YadYqs/Y=",
   "Source": "Easyourtour",
   "BasePath": "_content/Easyourtour",
   "Mode": "Default",
@@ -93,12 +93,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\images\\Locations\\Location-1\\2bab791f-1de3-46b4-ab8a-dd6907acb49a.png",
+      "Identity": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\images\\Locations\\Location-3\\32230cf2-dc3b-4f9f-95bc-df57b4e761fb.png",
       "SourceId": "Easyourtour",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\",
       "BasePath": "_content/Easyourtour",
-      "RelativePath": "images/Locations/Location-1/2bab791f-1de3-46b4-ab8a-dd6907acb49a.png",
+      "RelativePath": "images/Locations/Location-3/32230cf2-dc3b-4f9f-95bc-df57b4e761fb.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -109,15 +109,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Locations\\Location-1\\2bab791f-1de3-46b4-ab8a-dd6907acb49a.png"
+      "OriginalItemSpec": "wwwroot\\images\\Locations\\Location-3\\32230cf2-dc3b-4f9f-95bc-df57b4e761fb.png"
     },
     {
-      "Identity": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\images\\Locations\\Location-1\\ee646292-aea5-400d-b92f-557b9ebcccb7.png",
+      "Identity": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\images\\Locations\\Location-3\\450af97c-919a-46fb-a895-df3fe254570e.png",
       "SourceId": "Easyourtour",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\",
       "BasePath": "_content/Easyourtour",
-      "RelativePath": "images/Locations/Location-1/ee646292-aea5-400d-b92f-557b9ebcccb7.png",
+      "RelativePath": "images/Locations/Location-3/450af97c-919a-46fb-a895-df3fe254570e.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -128,7 +128,45 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Locations\\Location-1\\ee646292-aea5-400d-b92f-557b9ebcccb7.png"
+      "OriginalItemSpec": "wwwroot\\images\\Locations\\Location-3\\450af97c-919a-46fb-a895-df3fe254570e.png"
+    },
+    {
+      "Identity": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\images\\Locations\\Location-3\\897c9e3e-02f5-44c8-ba6e-a4671f4b5a20.png",
+      "SourceId": "Easyourtour",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\",
+      "BasePath": "_content/Easyourtour",
+      "RelativePath": "images/Locations/Location-3/897c9e3e-02f5-44c8-ba6e-a4671f4b5a20.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Locations\\Location-3\\897c9e3e-02f5-44c8-ba6e-a4671f4b5a20.png"
+    },
+    {
+      "Identity": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\js\\Hotel.js",
+      "SourceId": "Easyourtour",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\",
+      "BasePath": "_content/Easyourtour",
+      "RelativePath": "js/Hotel.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Hotel.js"
     },
     {
       "Identity": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\js\\Locations.js",

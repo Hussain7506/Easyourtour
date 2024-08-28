@@ -1,43 +1,46 @@
 ﻿@using Easyourtour.Models.ViewModel
-@model LocationVm
+@model HotelVm
 
 <div class="card shadow border-0 my-4">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 ">
-                <h2 class="text-Primary py-2">@(Model.Location.Id != 0 ? "Update" : "Create") Product</h2>
+                <h2 class="text-Primary py-2">@(Model.Hotel.Id != 0 ? "Update" : "Create") Hotel</h2>
             </div>
         </div>
     </div>
     <div class="card-body p-4">
         <form method="post" class="row" enctype="multipart/form-data">
-            <input asp-for="Location.Id" hidden />
+            <input asp-for="Hotel.Id" hidden />
             <div class="row">
                 <div class="col-10">
                     <div class="border p-3">
                         @* <div asp-validation-summary="All"></div> *@
                         <div class="form-floating py-2 col-12">
-                            <input asp-for="Location.Name" class="form-control border-0 shadow" />
-                            <label asp-for="Location.Name" class="ms-2"></label>
-                            <span asp-validation-for="Location.Name" class="text-danger"></span>
+                            <input asp-for="Hotel.Name" class="form-control border-0 shadow" />
+                            <label asp-for="Hotel.Name" class="ms-2"></label>
+                            <span asp-validation-for="Hotel.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <textarea asp-for="Hotel.Amenities" class="form-control border-0 shadow">  </textarea>
+                            <label asp-for="Hotel.Amenities" class="ms-2"></label>
+                            <span asp-validation-for="Hotel.Amenities" class="text-danger"></span>
                         </div>
                         <div class="form-floating py-2 col-12">
                             <input type="file" name="files" multiple class="form-control border-0 shadow" />
-                            <label asp-for="Location.LocationImages" class="ms-2"></label>
-
+                            <label asp-for="Hotel.HotelImages" class="ms-2"></label>
                         </div>
-
                         <div class="form-floating py-2 col-12">
-                            <select asp-for="Location.DestinationId" asp-items="@Model.DestinationList"
+                            <select asp-for="Hotel.LocationId" asp-items="@Model.LocationList"
                                     class="form-select border-0 shadow">
-                                <option disabled selected>--Select Location--</option>
+                                <option disabled selected>--Select Hotel--</option>
                             </select>
-                            <label asp-for="Location.DestinationId" class="ms-2"></label>
-                            <span asp-validation-for="Location.DestinationId" class="text-danger"></span>
+                            <label asp-for="Hotel.LocationId" class="ms-2"></label>
+                            <span asp-validation-for="Hotel.LocationId" class="text-danger"></span>
                         </div>
                         <div class="row pt-2">
                             <div class="col-6 col-md-3">
-                                @if (Model.Location.Id != 0)
+                                @if (Model.Hotel.Id != 0)
                                 {
 
                                     <button type="submit" class="btn btn-primary form-control">Update</button>
@@ -56,7 +59,7 @@
 
 
                             <div class="col-6 col-md-3">
-                                <a asp-controller="Location" asp-action="Index"
+                                <a asp-controller="Hotel" asp-action="Index"
                                    class="btn btn-outline-primary border  form-control">
                                     Back to List
                                 </a>
@@ -67,9 +70,9 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    @if (Model.Location.LocationImages != null)
+                    @if (Model.Hotel.HotelImages != null)
                     {
-                        foreach (var image in Model.Location.LocationImages)
+                                foreach (var image in Model.Hotel.HotelImages)
                         {
                             <div class="border p-1 m-2 text-center">
                                 <img src="@image.ImageUrl" width="100%"

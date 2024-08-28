@@ -10,6 +10,10 @@
             <a asp-asp-controller="DestinationController" asp-action="Create" class="btn btn-primary">
                 Create New Destination
             </a>
+            <input type="file" id="csvFile" accept=".csv" class="d-none" />
+            <button id="uploadCsvButton" class="btn btn-secondary mx-2">
+                Upload CSV
+            </button>
         </div>
     </div>
     <table class="table">
@@ -55,3 +59,33 @@
 
     </table>
 </div>
+@section Scripts {
+    <script>
+        document.getElementById("uploadCsvButton").onclick = function () {
+            document.getElementById("csvFile").click(); // Trigger file input click
+        };
+
+        document.getElementById("csvFile").onchange = function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const formData = new FormData();
+                formData.append("file", file);
+
+                $.ajax({
+                    url: '@Url.Action("UploadCsv", "Destination")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (result) {
+                        alert("CSV uploaded and processed successfully!");
+                        location.reload(); // Reload the page to see updated data
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error uploading CSV: " + xhr.responseText);
+                    }
+                });
+            }
+        };
+    </script>
+}

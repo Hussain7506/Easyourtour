@@ -14,6 +14,6 @@ namespace Easyourtour.Models
         public int HotelId { get; set; }
 
         [ForeignKey("HotelId")]
-        public Location Hotel { get; set; }
+        public Hotel Hotel { get; set; }
     }
 }

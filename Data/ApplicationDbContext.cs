@@ -13,5 +13,7 @@ namespace Easyourtour.Data
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<LocationImage> LocationImages { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<HotelImage> HotelImages { get; set; }
     }
 }

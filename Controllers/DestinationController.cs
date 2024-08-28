@@ -1,6 +1,7 @@
 ﻿using Easyourtour.Models;
 using Easyourtour.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Easyourtour.Controllers
 {
@@ -93,6 +94,37 @@ namespace Easyourtour.Controllers
             _DestinationRepo.Save();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public async Task<IActionResult> UploadCsv(IFormFile file)
+        {
+            if (file == null || file.Length == 0 || Path.GetExtension(file.FileName) != ".csv")
+            {
+                ModelState.AddModelError("file", "Please upload a valid CSV file.");
+                return View();
+            }
+
+            using (var reader = new StreamReader(file.OpenReadStream()))
+            {
+                await reader.ReadLineAsync();
+                var line = await reader.ReadLineAsync();
+                while (line != null)
+                {
+                    var values = line.Split(',');
+                    
+                        var Destination= new Destination
+                        {
+                            Name = values[0],
+                            Destination_Type = values[1]
+                        };
+                        _DestinationRepo.Add(Destination);
+                    
+                    line = await reader.ReadLineAsync();
+                }
+            }
+
+             _DestinationRepo.Save();
+            return RedirectToAction("Index"); // Redirect to a suitable action
         }
     }
 }

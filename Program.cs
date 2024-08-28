@@ -12,6 +12,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 builder.Services.AddScoped<IDestination, DestinationRepository>();
 builder.Services.AddScoped<ILocation, LocationRepository>();
 builder.Services.AddScoped<ILocationImage, LocationImageRepository>();
+builder.Services.AddScoped<IHotel, HotelRepository>();
+builder.Services.AddScoped<IHotelImage, HotelImageRepository>();
 
 var app = builder.Build();
 

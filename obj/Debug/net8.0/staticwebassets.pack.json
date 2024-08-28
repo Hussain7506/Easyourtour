@@ -13,12 +13,20 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\images\\Locations\\Location-1\\2bab791f-1de3-46b4-ab8a-dd6907acb49a.png",
-      "PackagePath": "staticwebassets\\images\\Locations\\Location-1\\2bab791f-1de3-46b4-ab8a-dd6907acb49a.png"
+      "Id": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\images\\Locations\\Location-3\\32230cf2-dc3b-4f9f-95bc-df57b4e761fb.png",
+      "PackagePath": "staticwebassets\\images\\Locations\\Location-3\\32230cf2-dc3b-4f9f-95bc-df57b4e761fb.png"
     },
     {
-      "Id": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\images\\Locations\\Location-1\\ee646292-aea5-400d-b92f-557b9ebcccb7.png",
-      "PackagePath": "staticwebassets\\images\\Locations\\Location-1\\ee646292-aea5-400d-b92f-557b9ebcccb7.png"
+      "Id": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\images\\Locations\\Location-3\\450af97c-919a-46fb-a895-df3fe254570e.png",
+      "PackagePath": "staticwebassets\\images\\Locations\\Location-3\\450af97c-919a-46fb-a895-df3fe254570e.png"
+    },
+    {
+      "Id": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\images\\Locations\\Location-3\\897c9e3e-02f5-44c8-ba6e-a4671f4b5a20.png",
+      "PackagePath": "staticwebassets\\images\\Locations\\Location-3\\897c9e3e-02f5-44c8-ba6e-a4671f4b5a20.png"
+    },
+    {
+      "Id": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\js\\Hotel.js",
+      "PackagePath": "staticwebassets\\js\\Hotel.js"
     },
     {
       "Id": "D:\\Hussain\\New folder\\Easyourtour\\wwwroot\\js\\Locations.js",
