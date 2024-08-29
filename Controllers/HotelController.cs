@@ -129,6 +129,40 @@ namespace Easyourtour.Controllers
             }
             return RedirectToAction(nameof(Upsert), new { id = HotelId });
         }
+        [HttpPost]
+        public async Task<IActionResult> UploadCsv(IFormFile file)
+        {
+            if (file == null || file.Length == 0 || Path.GetExtension(file.FileName) != ".csv")
+            {
+                ModelState.AddModelError("file", "Please upload a valid CSV file.");
+                return View();
+            }
+
+            using (var reader = new StreamReader(file.OpenReadStream()))
+            {
+                await reader.ReadLineAsync();
+                var line = await reader.ReadLineAsync();
+                while (line != null)
+                {
+                    var values = line.Split(',');
+
+                    var Hotel = new Hotel
+                    {
+                        Name = values[0],
+                        LocationId = int.Parse(values[1]),
+                        Amenities=values[2]
+
+
+                    };
+                    _HotelRepo.Add(Hotel);
+
+                    line = await reader.ReadLineAsync();
+                }
+            }
+
+            _HotelRepo.Save();
+            return RedirectToAction("Index"); // Redirect to a suitable action
+        }
         #region APICALLS
         [HttpGet]
         public IActionResult GetAll()
