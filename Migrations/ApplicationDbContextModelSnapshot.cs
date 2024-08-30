@@ -61,6 +61,9 @@ namespace Easyourtour.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("LocationId");
@@ -88,6 +91,66 @@ namespace Easyourtour.Migrations
                     b.HasIndex("HotelId");
 
                     b.ToTable("HotelImages");
+                });
+
+            modelBuilder.Entity("Easyourtour.Models.HotelRoom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Inclusions")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoomType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("capacity")
+                        .HasColumnType("int");
+
+                    b.Property<double>("extrachargeperperson")
+                        .HasColumnType("float");
+
+                    b.Property<double>("priceoffseason")
+                        .HasColumnType("float");
+
+                    b.Property<double>("priceonseason")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelId");
+
+                    b.ToTable("HotelRooms");
+                });
+
+            modelBuilder.Entity("Easyourtour.Models.HotelRoomImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("HotelRoomId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelRoomId");
+
+                    b.ToTable("HotelRoomImages");
                 });
 
             modelBuilder.Entity("Easyourtour.Models.Location", b =>
@@ -134,6 +197,90 @@ namespace Easyourtour.Migrations
                     b.ToTable("LocationImages");
                 });
 
+            modelBuilder.Entity("Easyourtour.Models.Sightseeing", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("EntryFee")
+                        .HasColumnType("float");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("Sightseeings");
+                });
+
+            modelBuilder.Entity("Easyourtour.Models.SightseeingImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SightseeingId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelId");
+
+                    b.ToTable("SightseeingImages");
+                });
+
+            modelBuilder.Entity("Easyourtour.Models.Transport", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BaseDistance")
+                        .HasColumnType("int");
+
+                    b.Property<double>("BasePrice")
+                        .HasColumnType("float");
+
+                    b.Property<int>("CarCap")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CarType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("PricePerKm")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("Transports");
+                });
+
             modelBuilder.Entity("Easyourtour.Models.Hotel", b =>
                 {
                     b.HasOne("Easyourtour.Models.Location", "Location")
@@ -154,6 +301,28 @@ namespace Easyourtour.Migrations
                         .IsRequired();
 
                     b.Navigation("Hotel");
+                });
+
+            modelBuilder.Entity("Easyourtour.Models.HotelRoom", b =>
+                {
+                    b.HasOne("Easyourtour.Models.Hotel", "Hotel")
+                        .WithMany()
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
+                });
+
+            modelBuilder.Entity("Easyourtour.Models.HotelRoomImage", b =>
+                {
+                    b.HasOne("Easyourtour.Models.HotelRoom", "HotelRoom")
+                        .WithMany("HotelRoomImages")
+                        .HasForeignKey("HotelRoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HotelRoom");
                 });
 
             modelBuilder.Entity("Easyourtour.Models.Location", b =>
@@ -178,14 +347,57 @@ namespace Easyourtour.Migrations
                     b.Navigation("Location");
                 });
 
+            modelBuilder.Entity("Easyourtour.Models.Sightseeing", b =>
+                {
+                    b.HasOne("Easyourtour.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("Easyourtour.Models.SightseeingImage", b =>
+                {
+                    b.HasOne("Easyourtour.Models.Sightseeing", "Sightseeing")
+                        .WithMany("SightseeingImages")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sightseeing");
+                });
+
+            modelBuilder.Entity("Easyourtour.Models.Transport", b =>
+                {
+                    b.HasOne("Easyourtour.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+                });
+
             modelBuilder.Entity("Easyourtour.Models.Hotel", b =>
                 {
                     b.Navigation("HotelImages");
                 });
 
+            modelBuilder.Entity("Easyourtour.Models.HotelRoom", b =>
+                {
+                    b.Navigation("HotelRoomImages");
+                });
+
             modelBuilder.Entity("Easyourtour.Models.Location", b =>
                 {
                     b.Navigation("LocationImages");
+                });
+
+            modelBuilder.Entity("Easyourtour.Models.Sightseeing", b =>
+                {
+                    b.Navigation("SightseeingImages");
                 });
 #pragma warning restore 612, 618
         }

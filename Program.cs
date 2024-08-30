@@ -14,6 +14,11 @@ builder.Services.AddScoped<ILocation, LocationRepository>();
 builder.Services.AddScoped<ILocationImage, LocationImageRepository>();
 builder.Services.AddScoped<IHotel, HotelRepository>();
 builder.Services.AddScoped<IHotelImage, HotelImageRepository>();
+builder.Services.AddScoped<IHotelRoom, HotelRoomRepository>();
+builder.Services.AddScoped<IHotelRoomImage, HotelRoomImageRespository>();
+builder.Services.AddScoped<ITransport, TransportRepository>();
+builder.Services.AddScoped<ISightseeing, SightseeingRepository>();
+builder.Services.AddScoped<ISightseeingImage, SightseeingImageRepository>();
 
 var app = builder.Build();
 

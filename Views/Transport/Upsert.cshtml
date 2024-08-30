@@ -1,0 +1,95 @@
+﻿@using Easyourtour.Models.ViewModel
+@model TransportVm
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 ">
+                <h2 class="text-Primary py-2">@(Model.Transport.Id != 0 ? "Update" : "Create") Hotel</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Transport.Id" hidden />
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                        @* <div asp-validation-summary="All"></div> *@
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Transport.CarType" class="form-control border-0 shadow" />
+                            <label asp-for="Transport.CarType" class="ms-2"></label>
+                            <span asp-validation-for="Transport.CarType" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <textarea asp-for="Transport.CarCap" class="form-control border-0 shadow">  </textarea>
+                            <label asp-for="Transport.CarCap" class="ms-2"></label>
+                            <span asp-validation-for="Transport.CarCap" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <textarea asp-for="Transport.BaseDistance" class="form-control border-0 shadow">  </textarea>
+                            <label asp-for="Transport.BaseDistance" class="ms-2"></label>
+                            <span asp-validation-for="Transport.BaseDistance" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <textarea asp-for="Transport.BasePrice" class="form-control border-0 shadow">  </textarea>
+                            <label asp-for="Transport.BasePrice" class="ms-2"></label>
+                            <span asp-validation-for="Transport.BasePrice" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <textarea asp-for="Transport.PricePerKm" class="form-control border-0 shadow">  </textarea>
+                            <label asp-for="Transport.BasePrice" class="ms-2"></label>
+                            <span asp-validation-for="Transport.BasePrice" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="Transport.LocationId" asp-items="@Model.LocationList"
+                                    class="form-select border-0 shadow">
+                                <option disabled selected>--Select Hotel--</option>
+                            </select>
+                            <label asp-for="Transport.LocationId" class="ms-2"></label>
+                            <span asp-validation-for="Transport.LocationId" class="text-danger"></span>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.Transport.Id != 0)
+                                {
+
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+
+                                }
+                                else
+                                {
+
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+
+
+                                }
+                            </div>
+
+
+
+
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Hotel" asp-action="Index"
+                                   class="btn btn-outline-primary border  form-control">
+                                    Back to List
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

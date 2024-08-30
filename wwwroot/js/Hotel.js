@@ -11,9 +11,13 @@ function loadDataTable() {
             url: '/Hotel/getall'
         },
         "columns": [
-
-            { data: 'name', "width": "25%" },
-            { data: 'amenities', "width": "25%" },
+            { data: 'name', "width": "15%" },
+            { data: 'amenities', "width": "15%" },
+            { 
+                data: 'rating', 
+                "width": "15%",
+                "defaultContent": "N/A"  // Handle null or missing rating values
+            },
             {
                 data: 'location.name', "width": "10%"
             },
@@ -30,6 +34,7 @@ function loadDataTable() {
         ]
     });
 }
+
 
 
 function Delete(url) {

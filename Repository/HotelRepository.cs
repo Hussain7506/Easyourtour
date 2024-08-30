@@ -26,6 +26,7 @@ namespace Easyourtour.Repository
                 objFromDb.LocationId = obj.LocationId;
                 objFromDb.HotelImages = obj.HotelImages;
                 objFromDb.Amenities = obj.Amenities;
+                objFromDb.Rating = obj.Rating;
 
             }
         }
