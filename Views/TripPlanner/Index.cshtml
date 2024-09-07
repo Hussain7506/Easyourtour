@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Template>
+
+@{
+    ViewData["Title"] = "Manage Templates";
+}
+
+<h2>Manage Templates</h2>
+
+<a asp-action="CreateTemplate" class="btn btn-primary">Create New Template</a>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Template Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var template in Model)
+        {
+            <tr>
+                <td>@template.TemplateName</td>
+                <td>
+                    <a asp-action="EditTemplate" asp-route-id="@template.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="GeneratePdf" asp-route-id-id="@template.Id" class="btn btn-info">Download</a>
+                    <form asp-action="DeleteTemplate" asp-route-id="@template.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this template?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

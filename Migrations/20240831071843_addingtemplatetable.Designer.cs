@@ -4,6 +4,7 @@ using Easyourtour.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Easyourtour.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240831071843_addingtemplatetable")]
+    partial class addingtemplatetable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,38 +72,6 @@ namespace Easyourtour.Migrations
                     b.HasIndex("TransportId");
 
                     b.ToTable("DayItineraries");
-                });
-
-            modelBuilder.Entity("DayItineraryRoom", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DayItineraryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExtraPersons")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HotelRoomId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfRooms")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TotalRoomCost")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DayItineraryId");
-
-                    b.HasIndex("HotelRoomId");
-
-                    b.ToTable("DayItineraryRoom");
                 });
 
             modelBuilder.Entity("Easyourtour.Models.DayItinerarySightseeing", b =>
@@ -354,18 +325,11 @@ namespace Easyourtour.Migrations
                     b.Property<double>("FinalCost")
                         .HasColumnType("float");
 
-                    b.Property<int>("NumberOfAdults")
-                        .HasColumnType("int");
-
                     b.Property<int>("NumberOfDays")
                         .HasColumnType("int");
 
-                    b.Property<int>("NumberOfKids")
+                    b.Property<int>("NumberOfPersons")
                         .HasColumnType("int");
-
-                    b.Property<string>("StarRatingPreference")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -457,25 +421,6 @@ namespace Easyourtour.Migrations
                     b.Navigation("Template");
 
                     b.Navigation("Transport");
-                });
-
-            modelBuilder.Entity("DayItineraryRoom", b =>
-                {
-                    b.HasOne("DayItinerary", "DayItinerary")
-                        .WithMany("DayItineraryRooms")
-                        .HasForeignKey("DayItineraryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Easyourtour.Models.HotelRoom", "HotelRoom")
-                        .WithMany()
-                        .HasForeignKey("HotelRoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DayItinerary");
-
-                    b.Navigation("HotelRoom");
                 });
 
             modelBuilder.Entity("Easyourtour.Models.DayItinerarySightseeing", b =>
@@ -598,8 +543,6 @@ namespace Easyourtour.Migrations
 
             modelBuilder.Entity("DayItinerary", b =>
                 {
-                    b.Navigation("DayItineraryRooms");
-
                     b.Navigation("DayItinerarySightseeings");
                 });
 

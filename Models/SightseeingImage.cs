@@ -13,7 +13,7 @@ namespace Easyourtour.Models
 
         public int SightseeingId { get; set; }
 
-        [ForeignKey("HotelId")]
+        [ForeignKey("SightseeingId")]
         public Sightseeing Sightseeing { get; set; }
     }
 }

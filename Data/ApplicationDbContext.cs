@@ -20,5 +20,50 @@ namespace Easyourtour.Data
         public DbSet<Transport> Transports { get; set; }
         public DbSet<Sightseeing> Sightseeings { get; set; }
         public DbSet<SightseeingImage> SightseeingImages { get; set; }
+        public DbSet<Template> Templates { get; set; }
+        public DbSet<DayItinerary> DayItineraries { get; set; }
+        public DbSet<DayItinerarySightseeing> DayItinerarySightseeings { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Configure DayItinerary relationships with DeleteBehavior.Restrict or SetNull
+            modelBuilder.Entity<DayItinerary>()
+                .HasOne(di => di.HotelRoom)
+                .WithMany()
+                .HasForeignKey(di => di.HotelRoomId)
+                .OnDelete(DeleteBehavior.Restrict); // No cascade delete
+
+            modelBuilder.Entity<DayItinerary>()
+                .HasOne(di => di.Hotel)
+                .WithMany()
+                .HasForeignKey(di => di.HotelId)
+                .OnDelete(DeleteBehavior.Restrict); // No cascade delete
+
+            modelBuilder.Entity<DayItinerary>()
+                .HasOne(di => di.Location)
+                .WithMany()
+                .HasForeignKey(di => di.LocationId)
+                .OnDelete(DeleteBehavior.Restrict); // No cascade delete
+
+           
+
+            modelBuilder.Entity<DayItinerary>()
+                .HasOne(di => di.Destination)
+                .WithMany()
+                .HasForeignKey(di => di.DestinationId)
+                .OnDelete(DeleteBehavior.Restrict); // No cascade delete
+
+            // Composite primary key configuration for DayItinerarySightseeing
+            modelBuilder.Entity<DayItinerarySightseeing>()
+                .HasKey(ds => new { ds.DayItineraryId, ds.SightseeingId });
+
+
+
+            modelBuilder.Entity<DayItinerarySightseeing>()
+                .HasOne(ds => ds.Sightseeing)
+                .WithMany()
+                .HasForeignKey(ds => ds.SightseeingId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
     }
 }
