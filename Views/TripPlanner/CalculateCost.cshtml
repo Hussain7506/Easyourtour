@@ -1,0 +1,23 @@
+﻿@model List<Easyourtour.Models.TemplateCost>
+
+<h2>Total Costs</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Hotel Cost</th>
+            <th>Travel Cost</th>
+            <th>Final Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cost in Model)
+        {
+            <tr>
+                <td>@cost.HotelCost.ToString("C")</td>
+                <td>@cost.TravelCost.ToString("C")</td>
+                <td>@cost.FinalCost.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>

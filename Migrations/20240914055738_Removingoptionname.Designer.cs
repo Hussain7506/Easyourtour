@@ -4,6 +4,7 @@ using Easyourtour.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Easyourtour.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240914055738_Removingoptionname")]
+    partial class Removingoptionname
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,7 +126,7 @@ namespace Easyourtour.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("HotelDestinationDays");
+                    b.ToTable("HotelDestinationDay");
                 });
 
             modelBuilder.Entity("Easyourtour.Models.HotelDestinationOption", b =>
@@ -141,7 +144,7 @@ namespace Easyourtour.Migrations
 
                     b.HasIndex("TemplateId");
 
-                    b.ToTable("HotelDestinationOptions");
+                    b.ToTable("HotelDestinationOption");
                 });
 
             modelBuilder.Entity("Easyourtour.Models.HotelImage", b =>
@@ -456,7 +459,7 @@ namespace Easyourtour.Migrations
 
                     b.HasIndex("TravelSightseeingOptionId");
 
-                    b.ToTable("TravelSightseeingDays");
+                    b.ToTable("TravelSightseeingDay");
                 });
 
             modelBuilder.Entity("Easyourtour.Models.TravelSightseeingOption", b =>
@@ -474,7 +477,7 @@ namespace Easyourtour.Migrations
 
                     b.HasIndex("TemplateId");
 
-                    b.ToTable("TravelSightseeingOptions");
+                    b.ToTable("TravelSightseeingOption");
                 });
 
             modelBuilder.Entity("Easyourtour.Models.Hotel", b =>

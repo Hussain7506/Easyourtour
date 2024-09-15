@@ -21,49 +21,38 @@ namespace Easyourtour.Data
         public DbSet<Sightseeing> Sightseeings { get; set; }
         public DbSet<SightseeingImage> SightseeingImages { get; set; }
         public DbSet<Template> Templates { get; set; }
-        public DbSet<DayItinerary> DayItineraries { get; set; }
-        public DbSet<DayItinerarySightseeing> DayItinerarySightseeings { get; set; }
+        public DbSet<HotelDestinationOption> HotelDestinationOptions { get; set; }
+        public DbSet<TravelSightseeingOption> TravelSightseeingOptions { get; set; }
+        public DbSet<HotelDestinationDay> HotelDestinationDays { get; set; } // Add this line
+        public DbSet<TravelSightseeingDay> TravelSightseeingDays { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure DayItinerary relationships with DeleteBehavior.Restrict or SetNull
-            modelBuilder.Entity<DayItinerary>()
-                .HasOne(di => di.HotelRoom)
+            base.OnModelCreating(modelBuilder);
+
+            // Configure HotelDestinationDay -> Hotel relationship
+            modelBuilder.Entity<HotelDestinationDay>()
+                .HasOne(h => h.Hotel)
                 .WithMany()
-                .HasForeignKey(di => di.HotelRoomId)
-                .OnDelete(DeleteBehavior.Restrict); // No cascade delete
+                .HasForeignKey(h => h.HotelId)
+                .OnDelete(DeleteBehavior.Restrict); // Restrict or NoAction to prevent cascade delete
 
-            modelBuilder.Entity<DayItinerary>()
-                .HasOne(di => di.Hotel)
+            // Configure HotelDestinationDay -> HotelRoom relationship
+            modelBuilder.Entity<HotelDestinationDay>()
+                .HasOne(h => h.HotelRoom)
                 .WithMany()
-                .HasForeignKey(di => di.HotelId)
-                .OnDelete(DeleteBehavior.Restrict); // No cascade delete
+                .HasForeignKey(h => h.HotelRoomId)
+                .OnDelete(DeleteBehavior.Restrict); // Restrict or NoAction to prevent cascade delete
 
-            modelBuilder.Entity<DayItinerary>()
-                .HasOne(di => di.Location)
+            // Optionally configure other foreign keys similarly if needed.
+            // Configure HotelDestinationDay -> Location relationship
+            modelBuilder.Entity<HotelDestinationDay>()
+                .HasOne(h => h.Location)
                 .WithMany()
-                .HasForeignKey(di => di.LocationId)
-                .OnDelete(DeleteBehavior.Restrict); // No cascade delete
-
-           
-
-            modelBuilder.Entity<DayItinerary>()
-                .HasOne(di => di.Destination)
-                .WithMany()
-                .HasForeignKey(di => di.DestinationId)
-                .OnDelete(DeleteBehavior.Restrict); // No cascade delete
-
-            // Composite primary key configuration for DayItinerarySightseeing
-            modelBuilder.Entity<DayItinerarySightseeing>()
-                .HasKey(ds => new { ds.DayItineraryId, ds.SightseeingId });
-
-
-
-            modelBuilder.Entity<DayItinerarySightseeing>()
-                .HasOne(ds => ds.Sightseeing)
-                .WithMany()
-                .HasForeignKey(ds => ds.SightseeingId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(h => h.LocationId)
+                .OnDelete(DeleteBehavior.Restrict); // Disable cascading delete
         }
+
 
     }
 }

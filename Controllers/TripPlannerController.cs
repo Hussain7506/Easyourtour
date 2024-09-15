@@ -24,18 +24,15 @@ namespace Easyourtour.Controllers
             return View(templates);
         }
 
-        // GET: /TripPlanner/CreateTemplate
+        // GET: Create Template
         public IActionResult CreateTemplate()
         {
-            var model = new TripPlanVM
-            {
-                NumberOfDays = 0
-            };
-
+            var model = new TripPlanVM();
             PopulateDropdowns(model);
             return View(model);
         }
 
+        // POST: Save the template and related options
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTemplate(TripPlanVM model)
@@ -49,80 +46,182 @@ namespace Easyourtour.Controllers
                     NumberOfKids = model.NumberOfKids,
                     StartDate = model.StartDate,
                     NumberOfDays = model.NumberOfDays,
-                    StarRatingPreference = model.StarRatingPreference,
-                    travelandSightSeeingSpots = new List<TravelandSightSeeingSpot>(),
-                    DestinationandHotel = new List<DestinationandHotels>(),
-                    FinalCost=model.FinalCost
+                    StarRatingPreference = model.StarRatingPreference
                 };
 
-                foreach (var destinationHotelVM in model.DestinationandHotels)
+                // Add HotelDestinationOptions
+                foreach (var option in model.HotelDestinationOptions)
                 {
-                    var destinationHotel = new DestinationandHotels
+                    var hotelDestinationOption = new HotelDestinationOption
                     {
-                        DayItineraries = new List<DayItinerary>(),
-                        HotelCost = destinationHotelVM.Hotelcost,
-                        OptionNumber = destinationHotelVM.OptionNumber
+                        
                     };
 
-                    foreach (var dayVM in destinationHotelVM.Days)
+                    foreach (var day in option.HotelDestinationDays)
                     {
-                        var dayItinerary = new DayItinerary
+                        hotelDestinationOption.HotelDestinationDays.Add(new HotelDestinationDay
                         {
-                            DayNumber = dayVM.DayNumber,
-                            DestinationId = dayVM.DestinationId,
-                            LocationId = dayVM.LocationId
-                        };
-
-                        foreach (var roomVM in dayVM.Rooms)
-                        {
-                            var room = new DayItineraryRoom
-                            {
-                                HotelRoomId = roomVM.HotelRoomId,
-                                NumberOfRooms = roomVM.NumberOfRooms,
-                                ExtraPersons = roomVM.ExtraPersons,
-                                TotalRoomCost = roomVM.TotalRoomCost
-                            };
-                            dayItinerary.DayItineraryRooms.Add(room);
-                        }
-
-                        destinationHotel.DayItineraries.Add(dayItinerary);
+                            DayNumber = day.DayNumber,
+                            DestinationId = day.DestinationId,
+                            LocationId = day.LocationId,
+                            HotelId = day.HotelId,
+                            HotelRoomId = day.HotelRoomId,
+                            NumRooms = day.NumRooms,
+                            ExtraBeds = day.ExtraBeds,
+                            Capacity = day.Capacity,
+                            Inclusions = day.Inclusions
+                        });
                     }
 
-                    template.DestinationandHotel.Add(destinationHotel);
+                    template.HotelDestinationOptions.Add(hotelDestinationOption);
                 }
-                foreach (var travelSightseeingVM in model.TravelandSightSeeingSpots)
+
+                // Add TravelSightseeingOptions
+                foreach (var travelOption in model.TravelSightseeingOptions)
                 {
-                    var travelSightseeing = new TravelandSightSeeingSpot
+                    var travelSightseeingOption = new TravelSightseeingOption
                     {
-                        TemplateId = template.Id, // Assuming the template ID will be assigned after saving
-                        TransportId = travelSightseeingVM.TransportId,
-                        DayItinerarySightseeings = new List<DayItinerarySightseeing>(),
-                        Kilometers = travelSightseeingVM.Kilometers,
-                        TotalCost = travelSightseeingVM.TotalCost
+                       
                     };
 
-                    // Loop through SightseeingIds to create DayItinerarySightseeings
-                    foreach (var sightseeingId in travelSightseeingVM.SightseeingIds)
+                    foreach (var travelDay in travelOption.TravelSightseeingDays)
                     {
-                        var sightseeing = new DayItinerarySightseeing
+                        travelSightseeingOption.TravelSightseeingDays.Add(new TravelSightseeingDay
                         {
-                            SightseeingId = sightseeingId,
-                        };
-                        travelSightseeing.DayItinerarySightseeings.Add(sightseeing);
+                            DayNumber = travelDay.DayNumber,
+                            CarTypeId = travelDay.CarTypeId,
+                            BasePrice = travelDay.BasePrice,
+                            BaseDistance = travelDay.BaseDistance,
+                            Kilometers = travelDay.Kilometers,
+                            SightseeingSpotIds = travelDay.SightseeingSpotIds,
+                            Miscellaneous = travelDay.Miscellaneous
+                        });
                     }
 
-                    template.travelandSightSeeingSpots.Add(travelSightseeing);
+                    template.TravelSightseeingOptions.Add(travelSightseeingOption);
                 }
 
+                // Save template
                 _context.Templates.Add(template);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("ViewTemplate", new { templateId = template.Id });
+                return RedirectToAction("CalculateCost", new { templateId = template.Id });
             }
 
-            PopulateDropdowns(model);
             return View(model);
         }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteTemplate(int id)
+        {
+            var template = await _context.Templates
+                .Include(t => t.HotelDestinationOptions)
+                    .ThenInclude(hdo => hdo.HotelDestinationDays)
+                .Include(t => t.TravelSightseeingOptions)
+                    .ThenInclude(tso => tso.TravelSightseeingDays)
+                        .ThenInclude(tsd => tsd.SightseeingSpots) // Load nested SightseeingSpots
+                .FirstOrDefaultAsync(t => t.Id == id);
+
+            if (template == null)
+            {
+                return Json(new { success = false, message = "Template not found." });
+            }
+
+            // 1. Remove related HotelDestinationOptions, HotelDestinationDays, and any nested entities
+            foreach (var hotelOption in template.HotelDestinationOptions.ToList())
+            {
+                // First, remove the HotelDestinationDays
+                foreach (var hotelDay in hotelOption.HotelDestinationDays.ToList())
+                {
+                    _context.HotelDestinationDays.Remove(hotelDay);
+                }
+
+                // Then, remove the HotelDestinationOption
+                _context.HotelDestinationOptions.Remove(hotelOption);
+            }
+
+            // 2. Remove related TravelSightseeingOptions, TravelSightseeingDays, and nested SightseeingSpots
+            foreach (var travelOption in template.TravelSightseeingOptions.ToList())
+            {
+                foreach (var travelDay in travelOption.TravelSightseeingDays.ToList())
+                {
+                    // First, remove the related SightseeingSpots for each day
+                    travelDay.SightseeingSpots.Clear(); // Clear or remove each related sightseeing spot if it's tracked
+
+                    // Then, remove the TravelSightseeingDay
+                    _context.TravelSightseeingDays.Remove(travelDay);
+                }
+
+                // Remove the TravelSightseeingOption
+                _context.TravelSightseeingOptions.Remove(travelOption);
+            }
+
+            // 3. Finally, remove the template itself
+            _context.Templates.Remove(template);
+
+            await _context.SaveChangesAsync();
+
+            return Json(new { success = true, message = "Template and related options deleted successfully." });
+        }
+
+        // GET: Calculate cost for each option
+        public async Task<IActionResult> CalculateCost(int templateId)
+        {
+            var template = await _context.Templates
+                .Include(t => t.HotelDestinationOptions)
+                .ThenInclude(h => h.HotelDestinationDays)
+                .Include(t => t.TravelSightseeingOptions)
+                .ThenInclude(t => t.TravelSightseeingDays)
+                 .ThenInclude(tsd => tsd.CarType)
+                .FirstOrDefaultAsync(t => t.Id == templateId);
+
+            if (template == null)
+            {
+                return NotFound();
+            }
+
+            // Calculate costs for each option and save in TemplateCost
+            foreach (var hotelOption in template.HotelDestinationOptions)
+            {
+                decimal hotelCost = 0;
+
+                foreach (var day in hotelOption.HotelDestinationDays)
+                {
+                    var room = await _context.HotelRooms.FindAsync(day.HotelRoomId);
+
+                    // Convert double to decimal for the calculations
+                    hotelCost += (day.NumRooms * (decimal)room.priceonseason) + (day.ExtraBeds * (decimal)room.extrachargeperperson);
+                }
+
+                foreach (var travelOption in template.TravelSightseeingOptions)
+                {
+                    decimal travelCost = 0;
+
+                    foreach (var travelDay in travelOption.TravelSightseeingDays)
+                    {
+                        // Convert double to decimal for travel calculations
+                        travelCost += (decimal)travelDay.BasePrice;
+
+                        if (travelDay.Kilometers > travelDay.BaseDistance)
+                        {
+                            travelCost += (travelDay.Kilometers - travelDay.BaseDistance) * (decimal)travelDay.CarType.PricePerKm;
+                        }
+                    }
+
+                    // Add the calculated costs to the TemplateCosts
+                    template.TemplateCosts.Add(new TemplateCost
+                    {
+                        HotelCost = hotelCost,
+                        TravelCost = travelCost,
+                        FinalCost = hotelCost + travelCost
+                    });
+                }
+            }
+
+            await _context.SaveChangesAsync();
+
+            return View(template.TemplateCosts); // Return the calculated costs to a view
+        }
+
 
 
         private void PopulateDropdowns(TripPlanVM model)

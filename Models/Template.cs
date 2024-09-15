@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Easyourtour.Models
 {
@@ -12,6 +14,7 @@ namespace Easyourtour.Models
 
         [Required]
         public int NumberOfAdults { get; set; }
+
         public int NumberOfKids { get; set; }
 
         [Required]
@@ -20,12 +23,15 @@ namespace Easyourtour.Models
         [Required]
         public int NumberOfDays { get; set; }
 
-        public double FinalCost { get; set; }
-
-        // Navigation Property
-        //public List<DayItinerary> DayItineraries { get; set; }
-        public List<DestinationandHotels> DestinationandHotel { get; set; }
-        public List<TravelandSightSeeingSpot> travelandSightSeeingSpots { get; set; } 
         public string StarRatingPreference { get; set; }
+
+        // List of Hotel and Destination options
+        public List<HotelDestinationOption> HotelDestinationOptions { get; set; } = new List<HotelDestinationOption>();
+
+        // List of Travel and Sightseeing options
+        public List<TravelSightseeingOption> TravelSightseeingOptions { get; set; } = new List<TravelSightseeingOption>();
+
+        // Costs for each option
+        public List<TemplateCost> TemplateCosts { get; set; } = new List<TemplateCost>();
     }
 }
