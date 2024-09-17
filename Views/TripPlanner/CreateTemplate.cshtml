@@ -132,6 +132,7 @@
                 for (let i = 1; i <= days; i++) {
                     let row = `<tr data-day="${i}">
                                 <td>${i}</td>
+                                        <input type="hidden" name="HotelDestinationOptions[${option}].HotelDestinationDays[${i - 1}].DayNumber" value="${i}" />
                                 <td>
                                     <select class="form-control destination-dropdown" name="HotelDestinationOptions[${option}].HotelDestinationDays[${i - 1}].DestinationId" data-day="${i}">
                                         <option value="">-- Select Destination --</option>
@@ -172,6 +173,7 @@
                 for (let i = 1; i <= days; i++) {
                     let row = `<tr data-day="${i}">
                                 <td>${i}</td>
+                                <input type="hidden" name="TravelSightseeingOptions[${option}].TravelSightseeingDays[${i - 1}].DayNumber" value="${i}" />
                                 <td>
                                     <select class="form-control transport-dropdown" name="TravelSightseeingOptions[${option}].TravelSightseeingDays[${i - 1}].CarTypeId" data-day="${i}">
                                         <option value="">-- Select Car Type --</option>
@@ -280,10 +282,14 @@
             function loadHotels(locationId, day, option) {
                 const hotelDropdown = $(`select[name="HotelDestinationOptions[${option}].HotelDestinationDays[${day - 1}].HotelId"]`);
                 const starRatings = $('#StarRating').val();
-
+                if (typeof starRatings === 'string') {
+                    starRatings = starRatings.split(',').map(Number);
+                }
+                console.log("The Star Ratings are" + starRatings);
                 $.ajax({
                     url: '/TripPlanner/GetHotels',
                     type: 'GET',
+                    traditional: true,  // This will ensure the array is passed correctly
                     data: {
                         locationId: locationId,
                         starRatings: starRatings
