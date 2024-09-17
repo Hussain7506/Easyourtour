@@ -75,6 +75,6 @@ namespace Easyourtour.Models.ViewModel
 
         public List<int> SightseeingSpotIds { get; set; } = new List<int>();
 
-        public string Miscellaneous { get; set; }
+        public double  Miscellaneous { get; set; }
     }
 }

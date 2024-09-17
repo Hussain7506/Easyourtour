@@ -30,7 +30,7 @@ namespace Easyourtour.Models
 
         public List<int> SightseeingSpotIds { get; set; } = new List<int>(); // List of Sightseeing spots visited
 
-        public string Miscellaneous { get; set; }
+        public double Miscellaneous { get; set; }
 
         // Navigation properties
         public Transport CarType { get; set; }

@@ -200,6 +200,7 @@ namespace Easyourtour.Controllers
                     {
                         // Convert double to decimal for travel calculations
                         travelCost += (decimal)travelDay.BasePrice;
+                        travelCost += (decimal)travelDay.Miscellaneous;
 
                         if (travelDay.Kilometers > travelDay.BaseDistance)
                         {
