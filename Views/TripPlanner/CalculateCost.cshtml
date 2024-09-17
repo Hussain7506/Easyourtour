@@ -5,19 +5,25 @@
 <table class="table table-bordered">
     <thead>
         <tr>
+            <th>Option No</th>
             <th>Hotel Cost</th>
             <th>Travel Cost</th>
             <th>Final Cost</th>
         </tr>
     </thead>
     <tbody>
+        @{
+            int srNo = 1; // Initialize the serial number
+        }
         @foreach (var cost in Model)
         {
             <tr>
+                <td>@srNo</td>
                 <td>@cost.HotelCost.ToString("C")</td>
                 <td>@cost.TravelCost.ToString("C")</td>
                 <td>@cost.FinalCost.ToString("C")</td>
             </tr>
+            srNo++; // Increment the serial number
         }
     </tbody>
 </table>

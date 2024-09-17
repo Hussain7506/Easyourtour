@@ -158,9 +158,9 @@
                                     </select>
                                 </td>
                                 <td><input type="text" class="form-control" name="HotelDestinationOptions[${option}].HotelDestinationDays[${i - 1}].Capacity" data-day="${i}" readonly /></td>
-                                <td><input type="number" class="form-control" name="HotelDestinationOptions[${option}].HotelDestinationDays[${i - 1}].ExtraBeds" placeholder="Number of Extra Beds" /></td>
+                                <td><input type="number" class="form-control" name="HotelDestinationOptions[${option}].HotelDestinationDays[${i - 1}].ExtraBeds" placeholder="Number of Extra Beds" value="0" /></td>
                                 <td><input type="text" class="form-control" name="HotelDestinationOptions[${option}].HotelDestinationDays[${i - 1}].Inclusions" data-day="${i}" readonly /></td>
-                                <td><input type="number" class="form-control" name="HotelDestinationOptions[${option}].HotelDestinationDays[${i - 1}].NumRooms" /></td>
+                                <td><input type="number" class="form-control" name="HotelDestinationOptions[${option}].HotelDestinationDays[${i - 1}].NumRooms" value="1" /></td>
                             </tr>`;
                     tbody.append(row);
                 }
@@ -201,13 +201,14 @@
                         const destinationId = $(this).val();
                         if (destinationId) {
                             loadLocations(destinationId, day, option);
+                            loadSightseeings(destinationId, day);
                         }
                     } else if (name.includes('LocationId')) {
                         const locationId = $(this).val();
                         if (locationId) {
                             loadTransportDetails(locationId, day);
                             loadHotels(locationId, day, option);
-                            loadSightseeings(locationId, day);
+                            
                         }
                     } else if (name.includes('HotelId')) {
                         const hotelId = $(this).val();
@@ -362,11 +363,11 @@
                 });
             }
 
-            function loadSightseeings(locationId, day, option) {
+            function loadSightseeings(destinationId, day, option) {
                 const sightseeingDropdown = $(`.sightseeing-dropdown[data-day="${day}"]`);
 
                 $.ajax({
-                    url: `/TripPlanner/GetSightseeings/${locationId}`,
+                    url: `/TripPlanner/GetSightseeings/${destinationId}`,
                     type: 'GET',
                     success: function (data) {
                         sightseeingDropdown.empty();

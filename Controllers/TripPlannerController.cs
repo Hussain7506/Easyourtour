@@ -54,7 +54,7 @@ namespace Easyourtour.Controllers
                 {
                     var hotelDestinationOption = new HotelDestinationOption
                     {
-                        
+
                     };
 
                     foreach (var day in option.HotelDestinationDays)
@@ -81,7 +81,7 @@ namespace Easyourtour.Controllers
                 {
                     var travelSightseeingOption = new TravelSightseeingOption
                     {
-                       
+
                     };
 
                     foreach (var travelDay in travelOption.TravelSightseeingDays)
@@ -293,13 +293,13 @@ namespace Easyourtour.Controllers
             return Json(transports);
         }
 
-        [HttpGet("TripPlanner/GetSightseeings/{locationId}")]
-        public JsonResult GetSightseeings(int locationId)
+        [HttpGet("TripPlanner/GetSightseeings/{destinationId}")]
+        public JsonResult GetSightseeings(int destinationId)
         {
             var sightseeings = _context.Sightseeings
-                .Where(s => s.LocationId == locationId)
-                .Select(s => new { s.Id, s.Name })
-                .ToList();
+        .Where(s => s.Location.DestinationId == destinationId)  // Join based on DestinationId
+        .Select(s => new { s.Id, s.Name })
+        .ToList();
             return Json(sightseeings);
         }
     }
