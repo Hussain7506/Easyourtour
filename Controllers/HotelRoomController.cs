@@ -154,7 +154,9 @@ namespace Easyourtour.Controllers
                         capacity=int.Parse(values[3]),
                         extrachargeperperson = double.Parse(values[4]),
                         HotelId=int.Parse(values[5]),
-                        Inclusions=values[6]
+                        Inclusions=values[6],
+                        StartDate = DateTime.Parse(values[7]),
+                        EndDate = DateTime.Parse(values[8])
 
 
                     };

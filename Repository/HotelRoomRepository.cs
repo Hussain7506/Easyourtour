@@ -29,8 +29,9 @@ namespace Easyourtour.Repository
                 objFromDb.extrachargeperperson = obj.extrachargeperperson;
                 objFromDb.HotelId = obj.HotelId;
                 objFromDb.HotelRoomImages = obj.HotelRoomImages;
-                objFromDb.Inclusions = obj.Inclusions;   
-
+                objFromDb.Inclusions = obj.Inclusions;
+                objFromDb.StartDate=obj.StartDate;
+                objFromDb.EndDate=obj.EndDate;
             }
         }
     }

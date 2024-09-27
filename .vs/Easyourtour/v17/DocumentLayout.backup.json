@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|solutionrelative:views\\tripplanner\\createtemplate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|d:\\hussain\\new folder\\easyourtour\\views\\tripplanner\\edittemplate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|solutionrelative:views\\tripplanner\\edittemplate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|d:\\hussain\\new folder\\easyourtour\\controllers\\tripplannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|solutionrelative:controllers\\tripplannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|d:\\hussain\\new folder\\easyourtour\\views\\tripplanner\\calculatecost.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|solutionrelative:views\\tripplanner\\calculatecost.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|d:\\hussain\\new folder\\easyourtour\\models\\viewmodel\\tripplanvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{469713DF-36F9-4239-86A8-86994346991F}|Easyourtour.csproj|solutionrelative:models\\viewmodel\\tripplanvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,31 +26,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TripPlanVM.cs",
-              "DocumentMoniker": "D:\\Hussain\\New folder\\Easyourtour\\Models\\ViewModel\\TripPlanVM.cs",
-              "RelativeDocumentMoniker": "Models\\ViewModel\\TripPlanVM.cs",
-              "ToolTip": "D:\\Hussain\\New folder\\Easyourtour\\Models\\ViewModel\\TripPlanVM.cs",
-              "RelativeToolTip": "Models\\ViewModel\\TripPlanVM.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAA3wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T02:06:25.266Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TripPlannerController.cs",
-              "DocumentMoniker": "D:\\Hussain\\New folder\\Easyourtour\\Controllers\\TripPlannerController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TripPlannerController.cs",
-              "ToolTip": "D:\\Hussain\\New folder\\Easyourtour\\Controllers\\TripPlannerController.cs",
-              "RelativeToolTip": "Controllers\\TripPlannerController.cs",
-              "ViewState": "AgIAAB0BAAAAAAAAAAAQwCcBAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T01:52:30.815Z",
+              "Title": "EditTemplate.cshtml",
+              "DocumentMoniker": "D:\\Hussain\\New folder\\Easyourtour\\Views\\TripPlanner\\EditTemplate.cshtml",
+              "RelativeDocumentMoniker": "Views\\TripPlanner\\EditTemplate.cshtml",
+              "ToolTip": "D:\\Hussain\\New folder\\Easyourtour\\Views\\TripPlanner\\EditTemplate.cshtml",
+              "RelativeToolTip": "Views\\TripPlanner\\EditTemplate.cshtml",
+              "ViewState": "AgIAALgAAAAAAAAAAAAuwM4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-26T04:04:28.33Z",
               "EditorCaption": ""
             },
             {
@@ -61,7 +49,7 @@
               "RelativeDocumentMoniker": "Views\\TripPlanner\\CreateTemplate.cshtml",
               "ToolTip": "D:\\Hussain\\New folder\\Easyourtour\\Views\\TripPlanner\\CreateTemplate.cshtml",
               "RelativeToolTip": "Views\\TripPlanner\\CreateTemplate.cshtml",
-              "ViewState": "AgIAAMIAAAAAAAAAAAAowMsAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAPAAAAAAAAAAAAAuwHYBAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-09-17T01:52:15.499Z",
               "EditorCaption": ""
@@ -69,6 +57,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "TripPlannerController.cs",
+              "DocumentMoniker": "D:\\Hussain\\New folder\\Easyourtour\\Controllers\\TripPlannerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TripPlannerController.cs",
+              "ToolTip": "D:\\Hussain\\New folder\\Easyourtour\\Controllers\\TripPlannerController.cs",
+              "RelativeToolTip": "Controllers\\TripPlannerController.cs",
+              "ViewState": "AgIAAAYBAAAAAAAAAAAwwGMBAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T01:52:30.815Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "CalculateCost.cshtml",
               "DocumentMoniker": "D:\\Hussain\\New folder\\Easyourtour\\Views\\TripPlanner\\CalculateCost.cshtml",
               "RelativeDocumentMoniker": "Views\\TripPlanner\\CalculateCost.cshtml",

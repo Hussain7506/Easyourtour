@@ -20,6 +20,8 @@ namespace Easyourtour.Models
         public Hotel Hotel { get; set; }
         [ValidateNever]
         public List<HotelRoomImage> HotelRoomImages { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
     }
 }
