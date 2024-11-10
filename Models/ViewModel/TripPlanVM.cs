@@ -6,6 +6,8 @@ namespace Easyourtour.Models.ViewModel
 {
     public class TripPlanVM
     {
+        public int TemplateId { get; set; }
+
         [Required]
         public string TemplateName { get; set; }
 
