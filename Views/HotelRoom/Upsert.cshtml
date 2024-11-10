@@ -47,20 +47,9 @@
                             <span asp-validation-for="HotelRoom.Inclusions" class="text-danger"></span>
                         </div>
                         <div class="form-floating py-2 col-12">
-                            <textarea asp-for="HotelRoom.StartDate" class="form-control border-0 shadow">  </textarea>
-                            <label asp-for="HotelRoom.StartDate" class="ms-2"></label>
-                            <span asp-validation-for="HotelRoom.StartDate" class="text-danger"></span>
-                        </div> <div class="form-floating py-2 col-12">
-                            <textarea asp-for="HotelRoom.EndDate" class="form-control border-0 shadow">  </textarea>
-                            <label asp-for="HotelRoom.EndDate" class="ms-2"></label>
-                            <span asp-validation-for="HotelRoom.EndDate" class="text-danger"></span>
-                        </div>
-                        <div class="form-floating py-2 col-12">
                             <input type="file" name="files" multiple class="form-control border-0 shadow" />
                             <label asp-for="HotelRoom.HotelRoomImages" class="ms-2"></label>
                         </div>
-
-
                         <div class="form-floating py-2 col-12">
                             <select asp-for="HotelRoom.HotelId" asp-items="@Model.HotelList"
                                     class="form-select border-0 shadow">

@@ -47,8 +47,7 @@ namespace Easyourtour.Controllers
                     NumberOfKids = model.NumberOfKids,
                     StartDate = model.StartDate,
                     NumberOfDays = model.NumberOfDays,
-                    StarRatingPreference = model.StarRatingPreference,
-                    commission= model.commission
+                    StarRatingPreference = model.StarRatingPreference
                 };
 
                 // Add HotelDestinationOptions
@@ -180,29 +179,18 @@ namespace Easyourtour.Controllers
             {
                 return NotFound();
             }
-            
+
             // Calculate costs for each option and save in TemplateCost
             foreach (var hotelOption in template.HotelDestinationOptions)
             {
                 decimal hotelCost = 0;
-                
-                    foreach (var day in hotelOption.HotelDestinationDays)
+
+                foreach (var day in hotelOption.HotelDestinationDays)
                 {
-
                     var room = await _context.HotelRooms.FindAsync(day.HotelRoomId);
-                    if ((template.StartDate.Month > room.StartDate.Month ||
-                (template.StartDate.Month == room.StartDate.Month && template.StartDate.Day >= room.StartDate.Day)) &&
-               (template.StartDate.Month < room.EndDate.Month ||
-                (template.StartDate.Month == room.EndDate.Month && template.StartDate.Day <= room.EndDate.Day)))
-                    {
-                        hotelCost += (day.NumRooms * (decimal)room.priceonseason) + (day.ExtraBeds * (decimal)room.extrachargeperperson);
-                    }
 
-                    else
-                    {
-                        hotelCost += (day.NumRooms * (decimal)room.priceoffseason) + (day.ExtraBeds * (decimal)room.extrachargeperperson);
-                    }
-                       
+                    // Convert double to decimal for the calculations
+                    hotelCost += (day.NumRooms * (decimal)room.priceonseason) + (day.ExtraBeds * (decimal)room.extrachargeperperson);
                 }
 
                 foreach (var travelOption in template.TravelSightseeingOptions)
@@ -226,7 +214,7 @@ namespace Easyourtour.Controllers
                     {
                         HotelCost = hotelCost,
                         TravelCost = travelCost,
-                        FinalCost = hotelCost + travelCost+(decimal)template.commission
+                        FinalCost = hotelCost + travelCost
                     });
                 }
             }
@@ -236,149 +224,7 @@ namespace Easyourtour.Controllers
             return View(template.TemplateCosts); // Return the calculated costs to a view
         }
 
-        // GET: Edit Template
-        // GET: /TripPlanner/EditTemplate/{id}
-        public async Task<IActionResult> EditTemplate(int id)
-        {
-            var template = await _context.Templates
-                .Include(t => t.HotelDestinationOptions)
-                .ThenInclude(h => h.HotelDestinationDays)
-                .Include(t => t.TravelSightseeingOptions)
-                .ThenInclude(t => t.TravelSightseeingDays)
-                .FirstOrDefaultAsync(t => t.Id == id);
 
-            if (template == null)
-            {
-                return NotFound();
-            }
-
-            var model = new TripPlanVM
-            {
-                TemplateId = template.Id,
-                TemplateName = template.TemplateName,
-                NumberOfAdults = template.NumberOfAdults,
-                NumberOfKids = template.NumberOfKids,
-                StartDate = template.StartDate,
-                NumberOfDays = template.NumberOfDays,
-                StarRatingPreference = template.StarRatingPreference,
-                commission = template.commission,
-                HotelDestinationOptions = template.HotelDestinationOptions.Select(h => new HotelDestinationOptionVM
-                {
-                    HotelDestinationDays = h.HotelDestinationDays.Select(d => new HotelDestinationDayVM
-                    {
-                        DayNumber = d.DayNumber,
-                        DestinationId = d.DestinationId,
-                        LocationId = d.LocationId,
-                        HotelId = d.HotelId,
-                        HotelRoomId = d.HotelRoomId,
-                        Capacity = d.Capacity,
-                        ExtraBeds = d.ExtraBeds,
-                        Inclusions = d.Inclusions,
-                        NumRooms = d.NumRooms
-                    }).ToList()
-                }).ToList(),
-                TravelSightseeingOptions = template.TravelSightseeingOptions.Select(t => new TravelSightseeingOptionVM
-                {
-                    TravelSightseeingDays = t.TravelSightseeingDays.Select(d => new TravelSightseeingDayVM
-                    {
-                        DayNumber = d.DayNumber,
-                        CarTypeId = d.CarTypeId,
-                        Kilometers = d.Kilometers,
-                        SightseeingSpotIds = d.SightseeingSpotIds,
-                        Miscellaneous = d.Miscellaneous,
-                        BasePrice = d.BasePrice,
-                        BaseDistance = d.BaseDistance
-                    }).ToList()
-                }).ToList()
-            };
-
-            PopulateDropdowns(model);
-            return View(model);
-        }
-
-
-        // POST: /TripPlanner/EditTemplate
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditTemplate(TripPlanVM model)
-        {
-            if (ModelState.IsValid)
-            {
-                var template = await _context.Templates
-                    .Include(t => t.HotelDestinationOptions)
-                    .ThenInclude(h => h.HotelDestinationDays)
-                    .Include(t => t.TravelSightseeingOptions)
-                    .ThenInclude(t => t.TravelSightseeingDays)
-                    .FirstOrDefaultAsync(t => t.Id == model.TemplateId);
-
-                if (template == null)
-                {
-                    return NotFound();
-                }
-
-                template.TemplateName = model.TemplateName;
-                template.NumberOfAdults = model.NumberOfAdults;
-                template.NumberOfKids = model.NumberOfKids;
-                template.StartDate = model.StartDate;
-                template.NumberOfDays = model.NumberOfDays;
-                template.StarRatingPreference = model.StarRatingPreference;
-                template.commission = model.commission;
-
-                // Update HotelDestinationOptions and related HotelDestinationDays
-                template.HotelDestinationOptions.Clear();
-                foreach (var option in model.HotelDestinationOptions)
-                {
-                    var hotelDestinationOption = new HotelDestinationOption();
-
-                    foreach (var day in option.HotelDestinationDays)
-                    {
-                        hotelDestinationOption.HotelDestinationDays.Add(new HotelDestinationDay
-                        {
-                            DayNumber = day.DayNumber,
-                            DestinationId = day.DestinationId,
-                            LocationId = day.LocationId,
-                            HotelId = day.HotelId,
-                            HotelRoomId = day.HotelRoomId,
-                            Capacity = day.Capacity,
-                            ExtraBeds = day.ExtraBeds,
-                            Inclusions = day.Inclusions,
-                            NumRooms = day.NumRooms
-                        });
-                    }
-
-                    template.HotelDestinationOptions.Add(hotelDestinationOption);
-                }
-
-                // Update TravelSightseeingOptions and related TravelSightseeingDays
-                template.TravelSightseeingOptions.Clear();
-                foreach (var option in model.TravelSightseeingOptions)
-                {
-                    var travelSightseeingOption = new TravelSightseeingOption();
-
-                    foreach (var day in option.TravelSightseeingDays)
-                    {
-                        travelSightseeingOption.TravelSightseeingDays.Add(new TravelSightseeingDay
-                        {
-                            DayNumber = day.DayNumber,
-                            CarTypeId = day.CarTypeId,
-                            Kilometers = day.Kilometers,
-                            SightseeingSpotIds = day.SightseeingSpotIds,
-                            Miscellaneous = day.Miscellaneous,
-                            BasePrice = day.BasePrice,
-                            BaseDistance = day.BaseDistance
-                        });
-                    }
-
-                    template.TravelSightseeingOptions.Add(travelSightseeingOption);
-                }
-
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-
-            PopulateDropdown();
-            return View(model);
-        }
 
         private void PopulateDropdowns(TripPlanVM model)
         {

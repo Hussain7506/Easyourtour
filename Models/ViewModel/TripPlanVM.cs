@@ -21,7 +21,6 @@ namespace Easyourtour.Models.ViewModel
 
         [Required]
         public int NumberOfDays { get; set; }
-        public double commission { get; set; }  
 
         public string StarRatingPreference { get; set; }
 

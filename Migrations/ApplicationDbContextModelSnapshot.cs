@@ -174,9 +174,6 @@ namespace Easyourtour.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
 
@@ -187,9 +184,6 @@ namespace Easyourtour.Migrations
                     b.Property<string>("RoomType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("capacity")
                         .HasColumnType("int");
@@ -355,9 +349,6 @@ namespace Easyourtour.Migrations
                     b.Property<string>("TemplateName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("commission")
-                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
